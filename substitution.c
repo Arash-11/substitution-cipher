@@ -4,17 +4,15 @@
 #include <ctype.h>
 #include <string.h>
 
-typedef char * string;
-
 char alphabets[26];
 
 void build_lowercase_alphabets();
 
-bool check_key_validity(string key);
+bool check_key_validity(char *key);
 
-void process_ciphertext(string plaintext, string key);
+void process_ciphertext(char *plaintext, char *key);
 
-int main(int argc, string argv[])
+int main(int argc, char *argv[])
 {
     // Check if only one command-line argument is passed
     if (argc != 2)
@@ -27,7 +25,7 @@ int main(int argc, string argv[])
     build_lowercase_alphabets();
 
     // Check key's validity
-    string key = argv[1];
+    char *key = argv[1];
 
     if (!check_key_validity(key))
     {
@@ -36,7 +34,7 @@ int main(int argc, string argv[])
     }
 
     // Prompt user for plaintext
-    string plaintext = NULL;
+    char *plaintext = NULL;
 
     printf("plaintext: ");
     // The %ms specifier allocates memory and returns a pointer to that memory --
@@ -66,7 +64,7 @@ void build_lowercase_alphabets()
     }
 }
 
-bool check_key_validity(string key)
+bool check_key_validity(char *key)
 {
     int counter = 0;
     char current_char = tolower(key[counter]);
@@ -87,7 +85,7 @@ bool check_key_validity(string key)
     return counter == 26;
 }
 
-void process_ciphertext(string plaintext, string key)
+void process_ciphertext(char *plaintext, char *key)
 {
     int plaintext_len = strlen(plaintext);
     char ciphertext[plaintext_len];
